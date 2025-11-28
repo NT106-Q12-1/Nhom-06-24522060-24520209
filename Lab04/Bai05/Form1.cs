@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq; 
 using System;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Net.Http.Headers; 
 using System.Threading.Tasks;
@@ -74,7 +75,16 @@ namespace Bai05
                     rtbOutput.AppendText($"Access Token: {accessToken}\n\n");
 
                     rtbOutput.AppendText("Đăng nhập thành công!\n");
-                   
+
+
+                    string token = responseObject["access_token"].ToString();
+                    string pathBai6 = @"D:\HK3\Lap_trinh_mang\Thuchanh\Lab\Nhom-06-24522060-24520209\Lab04\Bai06\bin\Debug\Bai06.exe";
+
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = pathBai6;
+                    startInfo.Arguments = token;
+
+                    Process.Start(startInfo);
 
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
                 }
